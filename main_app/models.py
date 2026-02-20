@@ -15,5 +15,7 @@ class Cat(models.Model):
     # Define a method to get the URL for this particular cat instance
     def get_absolute_url(self):
         # Use the 'reverse' function to dynamically find the URL for viewing this cat's details
-        return reverse("cat_detail", kwargs={"cat_id": self._id})
-    
+        return reverse("cat-detail", kwargs={"cat_id": self.id})
+
+# Why use reverse?
+# Using reverse is better than hardcoding f"/cats/{self.id}". If you ever decide to change your URL path from /cats/ to /mycats/ in urls.py, reverse will update every link in your entire app automatically.

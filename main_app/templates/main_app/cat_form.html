@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block head %}
+<link rel='stylesheet' href='{% static "css/form.css" %}'/>
+{% endblock head %}
+
+{% block content %}
+
+<div class='page-header'>
+    <h1>Add a Cat</h1>
+    <img src="{% static "images/nerd-cat.svg" %}" alt="A cat using a computer">
+</div>
+
+<form action="" method="post" class='form-container'>
+    {% comment %} (action="") means the form will submit to the same URL that served it. {% endcomment %}
+    {% csrf_token %}
+    {% comment %} security measure that makes it difficult to perform a cross-site-request-forgery {% endcomment %}
+
+    <table>
+        {{ form.as_table }}
+    </table>
+    <button type="submit" class="btn submit">Submit!</button>
+</form>
+
+{% endblock content %}
+

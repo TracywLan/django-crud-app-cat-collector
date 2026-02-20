@@ -26,7 +26,7 @@ from .models import Cat
 
 class CatCreate(CreateView):
     model = Cat
-    fields = '__all__'
+    fields = ['name', 'breed', 'description', 'age']
 
 # Define the home view function
 def home(request):

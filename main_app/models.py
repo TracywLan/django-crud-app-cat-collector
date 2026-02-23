@@ -19,3 +19,10 @@ class Cat(models.Model):
 
 # Why use reverse?
 # Using reverse is better than hardcoding f"/cats/{self.id}". If you ever decide to change your URL path from /cats/ to /mycats/ in urls.py, reverse will update every link in your entire app automatically.
+
+
+# Add new Feeding model below Cat model
+
+class Feeding(models.Model):
+    date = models.DateField()
+    meal = models.CharField(max_length=1)

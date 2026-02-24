@@ -2,6 +2,11 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
+MEALS = (
+    ('B', 'Breakfast'),
+    ('L', 'Lunch'),
+    ('D', 'Dinner')
+)
 
 class Cat(models.Model):
     name = models.CharField(max_length=100)
@@ -16,6 +21,7 @@ class Cat(models.Model):
     def get_absolute_url(self):
         # Use the 'reverse' function to dynamically find the URL for viewing this cat's details
         return reverse("cat-detail", kwargs={"cat_id": self.id})
+    
 
 # Why use reverse?
 # Using reverse is better than hardcoding f"/cats/{self.id}". If you ever decide to change your URL path from /cats/ to /mycats/ in urls.py, reverse will update every link in your entire app automatically.
@@ -24,5 +30,32 @@ class Cat(models.Model):
 # Add new Feeding model below Cat model
 
 class Feeding(models.Model):
-    date = models.DateField()
-    meal = models.CharField(max_length=1)
+    date = models.DateField('Feeding date')
+    meal = models.CharField(
+        max_length=1,
+        # add the 'choices' field option
+        choices=MEALS,
+        # set the default value for meal to be 'B'
+        default=MEALS[0][0]
+    )
+    
+    # Create a cat_id column for each feeding in the database
+    cat = models.ForeignKey(Cat, on_delete=models.CASCADE)
+    
+    def __str__(self):
+        # get_meal_display() method Django automagically creates to access the human-friendly value of a Field.choice like we have on meal.
+        return f"{self.get_meal_display()} on {self.date}"
+    # Define the default order of feedings
+    class Meta:
+        ordering = ['-date']  # This line makes the newest feedings appear first
+
+# Add the Toy model
+class Toy(models.Model):
+    name = models.CharField(max_length=50)
+    color = models.CharField(max_length=20)
+
+    def __str__(self):
+        return self.name
+
+    def get_absolute_url(self):
+        return reverse('toy-detail', kwargs={'pk': self.id})

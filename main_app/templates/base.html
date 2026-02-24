@@ -29,7 +29,9 @@
                 <!-- Django use name argument to dynamically generate URL based on the name of the view -->
                 <!-- Instead of hartcoding, the ref is now directed by the urls.py -->
                 <li><a href="{% url 'cat-index' %}">All Cats</a></li>
+                <li><a href="{% url 'toy-index' %}">All Toys</a></li>
                 <li><a href="{% url 'cat-create' %}">Add a Cat</li>
+                <li><a href="{% url 'toy-create' %}">Add a Toy</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
             </ul>
         </nav>

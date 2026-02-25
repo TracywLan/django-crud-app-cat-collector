@@ -216,6 +216,23 @@ nav li {
     margin-left: 25px;
   }
 
+  #logout-form button {
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 600;
+  font-size: 16px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  font-family: inherit;
+}
+
+#logout-form button:hover {
+  color: var(--link-hover-color);
+}
+
+
   @supports (-webkit-backdrop-filter: none) or (backdrop-filter: none) {
     header {
       background: var(--nav-bg);
